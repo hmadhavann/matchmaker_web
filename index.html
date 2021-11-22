@@ -1,17 +1,144 @@
 <!DOCTYPE html>
 <html lang= "en">
+<!--
+    Author: Hima Madhavan
+-->
 <head>
     <meta charset="UTF-8">
     <title>Matchmaker</title>
+    <link rel= "stylesheet" href= "matchmaker.css">
 </head>
+<body style="background-color: hsl(0, 64%, 60%);"></body>
 <body>
-    <h1>Hello World</h1>
+    <h1> &#10084;&#65039;&#10084;&#65039;&#10084;&#65039; Matchmaker &#10084;&#65039;&#10084;&#65039;&#10084;&#65039;</h1>
+    <p> <b>WELCOME TO MATCHMAKER</b> <br /> <i>Version 2.0 </i><br /> The all new and improved Matchmaker is here.<br /> 
+        All YOU have to do is answer a series of quetions HONESTLY <br /> with responses ranging from strongly agree to strongly disagree, 
+        and we'll do the rest! <br /> &#10084;&#65039;&#10084;&#65039;&#10084;&#65039; <b>Sit Back, Relax and Let Fate do its Thing!</b> 
+         &#10084;&#65039;&#10084;&#65039;&#10084;&#65039;<br />
+    </p>
+    <div class= "form-inline">
+    <label>Blue is the best color</label><br />
+    <select id="q1">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neutral</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br /><br />
+    <label>Football is the best sport</label><br />
+    <select id="q2">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neutral</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br /><br />
+    <label>Vincenzo is the best k-drama</k-drama></label><br />
+    <select id="q3">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neutral</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br /><br />
+    <label>Samosas are the best snack</label><br />
+    <select id="q4">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neutral</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br /><br />
+    <label>Lemonade Mouth is the worst Disney movie</label><br />
+    <select id="q5">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neutral</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    
+    <br /><br /><br />
+    <button onclick= "calculateCompatibility()"> Calculate Compatibility</button>
+    <p id="compatibility"></p>
+    <p id="compatibilityRange"></p>
+    </div>
+
+<script>
+    console.log("Starting Matchmaker...");
+
+    const DESIRED_REPONSE = [
+        4, /* agree */
+        1, /* strongly disagree */
+        3, /* neutral */
+        4, /* agree */
+        2, /* disagree */
+    ]
+    const MAX_SCORE = 25
+
+   function calculateCompatibility() {
+       console.log("calculaterCompatibility()");
+        let question1Response = document.getElementById('q1').selectedOptions[0].value;
+        let question2Response = document.getElementById('q2').selectedOptions[0].value;
+        let question3Response = document.getElementById('q3').selectedOptions[0].value;
+        let question4Response = document.getElementById('q4').selectedOptions[0].value;
+        let question5Response = document.getElementById('q5').selectedOptions[0].value;
+
+        console.log("Question 1 Answers:");
+        console.log(document.getElementById('q1').selectedOptions[0].text);
+        console.log(document.getElementById('q1').selectedOptions[0].value);
+        console.log(question1Response);
+
+        console.log("Question 2 Answers:");
+        console.log(document.getElementById('q2').selectedOptions[0].text);
+        console.log(document.getElementById('q2').selectedOptions[0].value);
+        console.log(question2Response);
+
+        console.log("Question 3 Answers:")
+        console.log(document.getElementById('q3').selectedOptions[0].text);
+        console.log(document.getElementById('q3').selectedOptions[0].value);
+        console.log(question3Response);
+
+        let question1Compatibility = 5 - Math.abs(question1Response-DESIRED_REPONSE[0]);
+        let question2Compatibility = 5 - Math.abs(question2Response-DESIRED_REPONSE[1]);
+        let question3Compatibility = 5 - Math.abs(question3Response-DESIRED_REPONSE[2]);
+        let question4Compatibility = 5 - Math.abs(question4Response-DESIRED_REPONSE[3]);
+        let question5Compatibility = 5 - Math.abs(question5Response-DESIRED_REPONSE[4]);
+
+        console.log("c1="+question1Compatibility);
+        console.log("c2="+question2Compatibility);
+        console.log("c3="+question3Compatibility);
+        console.log("c4="+question4Compatibility);
+        console.log("c5="+question5Compatibility);
+
+        let totalCompatibility = question1Compatibility + question2Compatibility +
+         question3Compatibility + question4Compatibility + question5Compatibility;
+
+        totalCompatibility *= 100/MAX_SCORE;
+        totalCompatibility = Math.round(totalCompatibility);
+        console.log("totalCompatibility="+ totalCompatibility);
+
+        document.getElementById("compatibility").innerHTML = "Are we Meant to Be? <br /> Your Result Is:"+ totalCompatibility + "%";
+        let compatibilityRange;
+        if(totalCompatibility <= 69) {
+            compatibilityRange = "...Perhaps in another life time";
+         } else if (70 <= totalCompatibility <= 79) {
+             compatibilityRange = "...Maybe in Another Time?";
+         } else if (80 <= totalCompatibility <= 89) {
+             compatibilityRange = "...Hmm...Friends?";
+         } else if (90 <= totalCompatibility <= 99) {
+            compatibilityRange = "We Should Hang Out!!!!";
+         } else {
+            compatibilityRange = "...IM SORRY... Are We SoulMATES?!?!?!";
+         }
+         document.getElementById("compatibilityRange").innerHTML = compatibilityRange;
+   }
+</script>
 </body>
-
-
-
-
-
-
-
 </html>
+
+
