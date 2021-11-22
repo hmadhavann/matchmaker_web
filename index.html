@@ -77,30 +77,30 @@
         3, /* neutral */
         4, /* agree */
         2, /* disagree */
-    ]
-    const MAX_SCORE = 25
+    ];
+    const MAX_SCORE = 25;
 
    function calculateCompatibility() {
        console.log("calculaterCompatibility()");
-        let question1Response = document.getElementById('q1').selectedOptions[0].value;
-        let question2Response = document.getElementById('q2').selectedOptions[0].value;
-        let question3Response = document.getElementById('q3').selectedOptions[0].value;
-        let question4Response = document.getElementById('q4').selectedOptions[0].value;
-        let question5Response = document.getElementById('q5').selectedOptions[0].value;
+        let question1Response = document.getElementById("q1").selectedOptions[0].value;
+        let question2Response = document.getElementById("q2").selectedOptions[0].value;
+        let question3Response = document.getElementById("q3").selectedOptions[0].value;
+        let question4Response = document.getElementById("q4").selectedOptions[0].value;
+        let question5Response = document.getElementById("q5").selectedOptions[0].value;
 
         console.log("Question 1 Answers:");
-        console.log(document.getElementById('q1').selectedOptions[0].text);
-        console.log(document.getElementById('q1').selectedOptions[0].value);
+        console.log(document.getElementById("q1").selectedOptions[0].text);
+        console.log(document.getElementById("q1").selectedOptions[0].value);
         console.log(question1Response);
 
         console.log("Question 2 Answers:");
-        console.log(document.getElementById('q2').selectedOptions[0].text);
-        console.log(document.getElementById('q2').selectedOptions[0].value);
+        console.log(document.getElementById("q2").selectedOptions[0].text);
+        console.log(document.getElementById("q2").selectedOptions[0].value);
         console.log(question2Response);
 
-        console.log("Question 3 Answers:")
-        console.log(document.getElementById('q3').selectedOptions[0].text);
-        console.log(document.getElementById('q3').selectedOptions[0].value);
+        console.log("Question 3 Answers:");
+        console.log(document.getElementById("q3").selectedOptions[0].text);
+        console.log(document.getElementById("q3").selectedOptions[0].value);
         console.log(question3Response);
 
         let question1Compatibility = 5 - Math.abs(question1Response-DESIRED_REPONSE[0]);
